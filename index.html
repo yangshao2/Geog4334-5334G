@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Course Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#topics">Topics</a></li>
+                <li><a href="#labs">Labs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="introduction">
+            <h2>General Introduction</h2>
+            <div id="introduction-content"></div>
+        </section>
+        <section id="topics">
+            <h2>Topics</h2>
+            <p>Here are the topics that will be covered in the course.</p>
+            <ul>
+                <li>Topic 1</li>
+                <li>Topic 2</li>
+                <li>Topic 3</li>
+            </ul>
+        </section>
+        <section id="labs">
+            <h2>Labs</h2>
+            <p>Details about the labs and practical sessions.</p>
+            <ul>
+                <li>Lab 1</li>
+                <li>Lab 2</li>
+                <li>Lab 3</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Information on this page has not been updated since <span id="date"></span>. Students should go to Canvas for the most up-to-date course syllabus and materials.</p>
+    </footer>
+    <script>
+        document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Load the external HTML content
+        fetch('general-introduction.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('introduction-content').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading introduction:', error));
+    </script>
+</body>
+</html>

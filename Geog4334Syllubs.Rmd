@@ -1,0 +1,145 @@
+---
+title: "Geospatial Information Technology for Land Change Modelling (GEOG4334/5334G)"
+author: "Yang Shao"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    toc: true
+    toc_depth: 2
+  word_document:
+    toc: true
+    toc_depth: 2
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Information on this page has not been updated since `r format(Sys.Date(), "%B %d, %Y")`. Students should go to Canvas for the most up-to-date course syllabus and materials.
+
+
+# Course Description
+
+Land Use and Land Cover Change (LULCC) is a key component of global environmental change. This course is primarily concerned with human transformations of the earth's surface, such as deforestation, urbanization, and agricultural intensification. The course focuses on understanding the rates, patterns, trends, causes, and consequences of contemporary land use and land cover change. Land change examples are drawn from all scales, from global to regional to local. Rates and patterns of land use/cover change will be examined and linked to the biophysical (e.g., slope, distance to water) and socio-economic drivers (e.g., population). The impacts of land change will be discussed with respect to local climate, biodiversity, water yield and quality, and ecosystem service in general. 
+
+The goals of this course are to (1) provide fundamental knowledge about LULCC concept and scope, (2) provide improved understanding of land change monitoring (e.g., rates and patterns of change), and (3) provide working knowledge of geospatial techniques to understand the drivers and consequences of land cover change. During the course we will read journal articles and selected book chapters. Students will work on 7-8 lab exercises. Almost all labs are designed to be implemented in ArcPro environments. Students are also expected to complete an end-of-term project that applies concepts/techniques learned in the class. Although this course mainly focuses on land change study, it is application-oriented and designed to improve your technical proficiency in the use of GIS, remote sensing, and spatial analyses. Course prerequisites: GEOG4084/5084
+
+# Course Prerequisites
+Geog4084/5084 Modelling with GIS
+
+# Instructor: 
+Yang Shao, 217 Wallace Hall, email: yshao@vt.edu
+
+# Lectures and lab sessions: 
+Tuesday and Thursday – 11:00am– 12:15am
+
+# Office Hours: 
+Wednesday 3:30PM-4:30PM
+
+# Materials: 
+Laptop with ArcGIS installed (optional) 
+
+# Grading: 
+Labs and assignments - 75%
+quiz – 10%
+Final project – 15%
+
+Labs are designed not only to give you experience with the software, but also to have you apply the concepts that we have been discussing in class. You can discuss the lab and get assistance from instructor and labmates, but all answers should be your own.  Ten percent of the grade will be deducted for each day late. The University Honor Code governs your behavior throughout the course.
+
+Grading scale (A = 90 to 100%, B=80 to 89%, C=70 to 79%, D=60 to 69%, F=0 to 59%). 
+
+# How to succeed in this course:
+- Attend lectures and labs consistently
+- If something is not clear, ask a question
+- Clarify expectations with the instructor
+
+# Student Responsibilities: 
+It is your responsibility to attend all lectures. Most of the hands-on sessions consist of a walk-through of techniques vital to the successful (and timely) completion of your homework projects, and are allowable to make up only if you notify us ahead of time that you cannot attend a particular week. If you miss a lecture, it is your responsibility to obtain suitable notes from a classmate who attended that day.
+
+"The honor code will be strictly enforced in this class. All assignments submitted shall be considered graded work unless otherwise noted. All aspects of your course work are covered by the honor system. Honesty in your academic work will develop into professional integrity. The faculty and students of Virginia Tech will not tolerate any form of academic dishonesty."
+
+# Services for Students with Disabilities 
+Virginia Tech welcomes students with disabilities into the University’s educational programs. The University promotes efforts to provide equal access and a culture of inclusion without altering the essential elements of coursework. If you anticipate or experience academic barriers that may be due to disability, including but not limited to ADHD, chronic or temporary medical conditions, deaf or hard of hearing, learning disability, mental health, or vision impairment, please contact the Services for Students with Disabilities (SSD) office (540-231-3788, ssd@vt.edu, or visit www.ssd.vt.edu). If you have an SSD accommodation letter, please meet with me privately during office hours as early in the semester as possible to deliver your letter and discuss your accommodations. You must give me reasonable notice to implement your accommodations, which is generally 5 business days and 10 business days for final exams.
+
+# Tentative Topics and Schedule
+
+```{r table, echo=FALSE}
+suppressMessages({
+  library(gt)
+  library(dplyr)
+})
+# Create the schedule data frame
+schedule <- data.frame(
+  Week = c("Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8", "Week 9", "Week 10", "Week 11", "Week 12", "Week 13", "Week 14", "Week 15", "Week 16"),
+  Dates = c(
+    "Aug 25 - Aug 31", "Sep 1 - Sep 7", "Sep 8 - Sep 14", "Sep 15 - Sep 21", "Sep 22 - Sep 28", 
+    "Sep 29 - Oct 5", "Oct 6 - Oct 12", "Oct 13 - Oct 19", "Oct 20 - Oct 26", "Oct 27 - Nov 2", 
+    "Nov 3 - Nov 9", "Nov 10 - Nov 16", "Nov 17 - Nov 23", "Nov 24 - Nov 30", "Dec 1 - Dec 7", "Dec 8 - Dec 14"
+  ),
+  Topics = c(
+    "General introduction: land use and land cover change definitions and scope; Understanding the consequences of land use and land cover change",
+    "Understanding the rates, patterns, and causes of contemporary land use and land cover change; In class lab exercises: ArcGIS model builder, Arcpy",
+    "Models of tropical deforestation; Markov chain model",
+     "Models of tropical deforestation; Landscape pattern indices; Fragstats",
+     "Discussion (Liu et al. article); Urbanization: the extent and distribution of urban settlements, expansion of urban settlements",
+    "Urban-rural gradients and urban forms",
+    "SLEUTH model – an introduction",
+    "SLEUTH model – implementation",
+    "Watershed assessment",
+    "Coastal environment - urban growth, sea level rise, climate change, flood impacts ", 
+    "Coastal environment - predicting impacts",
+    "Coastal environment - informed decision making and enhanced community resilience",
+    "Coastal environment - discussion",
+    "Thanksgiving holiday",
+    "Final project (group presentation)",
+    "Final project (group presentation)"
+  ),
+  Labs = c(
+    "Lab 1: Urban/forest Change in Loudoun County, Virginia",
+    "Lab2: PRISM data",
+    "Lab 3: Landchange in Haiti - Markov chain model",
+    "Lab 4: Tropical deforestation and landscape fragmentation; Fragstats",
+    "Lab 5: A logistic model for urban growth simulation",
+    "Lab 5: A logistic model for urban growth simulation",
+    "Lab 6: SLEUTH simulation model",
+    "Lab 6: SLEUTH simulation model",
+    "Lab 7: Watershed assessment (delineation, land change, and population change) ",
+    "Lab 8: Assessing coastal flooding",
+    "Lab 8: Assessing coastal flooding",
+    "Lab 8: Assessing coastal flooding",
+    "Final project help session",
+    "NA",
+    "Final project help session",
+    "Final project (group presentation)"
+  )
+)
+
+# Create the table with gt
+schedule_table <- gt(schedule) %>%
+  tab_header(
+    title = "Tentative Topics and Schedule",
+    subtitle = "Topics will be adjusted according to participant interest and may be constantly readjusted during the term, along with other activities."
+  ) %>%
+  cols_label(
+    Week = "Week",
+    Dates = "Dates",
+    Topics = "Course Topics",
+    Labs = "Labs/Activities"
+  ) %>%
+  cols_width(
+    c(Week) ~ px(150),
+    everything() ~ px(200)
+  ) %>%
+  tab_options(
+    table.font.size = px(12),
+    table.width = pct(100)
+  )
+
+# Print the table
+schedule_table
+
+
+```
+
